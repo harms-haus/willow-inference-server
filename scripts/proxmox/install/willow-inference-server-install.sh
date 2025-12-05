@@ -11,7 +11,7 @@ update_os
 
 set -euo pipefail
 
-REPO_URL="https://github.com/toverainc/willow-inference-server.git"
+REPO_URL="https://github.com/harms-haus/willow-inference-server.git"
 REPO_BRANCH="${WIS_BRANCH:-main}"
 REPO_DIR="/opt/willow-inference-server"
 ENV_FILE="${REPO_DIR}/.env"
