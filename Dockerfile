@@ -90,9 +90,9 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt .
-# Ensure PyAV builds with Cython < 3 and use cache to speed rebuilds
+# Ensure PyAV builds with Cython >=3 and use cache to speed rebuilds
 RUN --mount=type=cache,target=/root/.cache \
-    pip install "cython<3" && \
+    pip install "cython>=3.0.2" && \
     pip install -r requirements.txt
 
 # Install our torch ver matching cuda
