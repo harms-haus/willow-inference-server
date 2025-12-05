@@ -75,7 +75,19 @@ FROM nvcr.io/nvidia/tensorrt:23.08-py3
 WORKDIR /app
 
 # Install zstd and git-lfs for model compression and distribution
-RUN apt-get update && apt-get install -y zstd git-lfs && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+      zstd \
+      git-lfs \
+      pkg-config \
+      libavformat-dev \
+      libavcodec-dev \
+      libavdevice-dev \
+      libavutil-dev \
+      libavfilter-dev \
+      libswscale-dev \
+      libswresample-dev && \
+    rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt .
 # Run pip install with cache so we speedup subsequent rebuilds
