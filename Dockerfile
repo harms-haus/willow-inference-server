@@ -90,9 +90,11 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt .
-# Ensure PyAV builds with Cython <3 and disable build isolation so it uses it
+# Ensure PyAV builds with a Cython version it supports (0.29.37+ enforces
+# noexcept on callbacks and breaks PyAV 10.x). Pin to a safe 0.29.x release and
+# disable build isolation so it is picked up.
 RUN --mount=type=cache,target=/root/.cache \
-    pip install "cython<3" && \
+    pip install "cython>=0.29,<0.29.37" && \
     PIP_NO_BUILD_ISOLATION=1 pip install -r requirements.txt
 
 # Install our torch ver matching cuda
