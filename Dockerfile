@@ -90,8 +90,10 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt .
-# Run pip install with cache so we speedup subsequent rebuilds
-RUN --mount=type=cache,target=/root/.cache pip install -r requirements.txt
+# Ensure PyAV builds with Cython < 3 and use cache to speed rebuilds
+RUN --mount=type=cache,target=/root/.cache \
+    pip install "cython<3" && \
+    pip install -r requirements.txt
 
 # Install our torch ver matching cuda
 RUN --mount=type=cache,target=/root/.cache pip install -U torch==2.1.0 torchvision==0.16.0 torchaudio==2.1.0
