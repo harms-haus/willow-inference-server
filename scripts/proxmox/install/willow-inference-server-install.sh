@@ -28,7 +28,24 @@ ensure_env_var() {
 }
 
 msg_info "Installing base dependencies"
-$STD apt-get install -y ca-certificates curl gnupg git lsb-release python3 python3-venv python3-pip ffmpeg
+$STD apt-get install -y \
+  ca-certificates \
+  curl \
+  gnupg \
+  git \
+  lsb-release \
+  python3 \
+  python3-venv \
+  python3-pip \
+  ffmpeg \
+  pkg-config \
+  libavformat-dev \
+  libavcodec-dev \
+  libavdevice-dev \
+  libavutil-dev \
+  libavfilter-dev \
+  libswscale-dev \
+  libswresample-dev
 msg_ok "Installed base dependencies"
 
 msg_info "Installing Docker Engine"
