@@ -86,6 +86,8 @@ msg_ok "Environment defaults written"
 
 msg_info "Building image and downloading models (this can take a while)"
 cd "$REPO_DIR"
+# Ensure utils.sh treats this as host context even inside LXC
+unset container
 ./utils.sh install
 msg_ok "Docker image built and models downloaded"
 
